@@ -1,3 +1,7 @@
 body {
     background-color: azure;
 }
+
+.mid-align {
+    text-align: center;
+}
