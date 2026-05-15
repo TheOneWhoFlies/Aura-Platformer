@@ -1,8 +1,16 @@
+
+const sizes = {
+    width: 800,
+    height: 600
+}
+
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: sizes.width,
+    height: sizes.height,
     parent: 'game-wrapper',
+    backgroundColor: '#FFFFFF',
+    canvas:'game-canvas',
     physics: {
         default: 'arcade',
         arcade: {gravity: {y:300} }
@@ -12,11 +20,4 @@ const config = {
         create: create
     }
 }
-
-function preload() {
-
-}
-
-function create() {
-    this.add.text(400, 100, 'Game running from external game.js!', { fill: '#00ff00' }).setOrigin(0.5);
-}
+const game = new Phaser.Game(config);
