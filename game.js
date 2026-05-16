@@ -11,6 +11,10 @@ const config = {
     height: sizes.height,
     parent: 'game-wrapper',
     backgroundColor: '#000000',
+    canvas: document.getElementById('game-canvas'),
+    scale: {
+        mode: Phaser.Scale.FIT
+    },
     physics: {
         default: 'arcade',
         arcade: {gravity: {y:gravity} },
@@ -28,7 +32,7 @@ function preload(){
 }
 
 function create(){
-    this.add.text(sizes.width / 2, sizes.height / 2, 'Hello Phaser!', { font: '48px Arial', fill: '#FFFFFF' });
+    this.add.text(sizes.width / 2, sizes.height / 2, 'Hello World!', { font: '48px Arial', fill: '#FFFFFF' });
 }
 
 function update() {

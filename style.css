@@ -2,11 +2,7 @@ body {
     background-color: azure;
 }
 
-game-wrapper {
-    background-color: rgb(219, 102, 102);
-    border: 1px solid black;
-}
-
-.mid-align {
-    text-align: center;
+#game-wrapper {
+    background-color: rgb(255, 255, 255);
+    border: 5px solid rgb(250, 82, 82);
 }
