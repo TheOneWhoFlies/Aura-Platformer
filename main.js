@@ -1,4 +1,4 @@
-import TitleScene from './Scenes/Title.js';
+import TitleScene from '../Scenes/Title.js';
 
 const aspectRatio = {
     width: 800,

@@ -1,5 +1,6 @@
 body {
-    background-color: azure;
+    background-color: rgb(34, 41, 39);
+    color: rgb(98, 255, 98);
 }
 
 #game-wrapper {
