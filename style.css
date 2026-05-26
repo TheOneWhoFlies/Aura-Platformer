@@ -9,7 +9,7 @@ body {
     margin:0 0 0 0;
 }
 
-#right-advert {
-    text-align: right;
+.advert {
+    margin: auto;
     
 }
