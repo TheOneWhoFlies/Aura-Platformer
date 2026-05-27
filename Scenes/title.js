@@ -1,5 +1,8 @@
-
 export default class TitleScene extends Phaser.Scene {
+    constructor() {
+        super({key: 'Title'});
+    }
+
     preload() {
         
     }
@@ -11,7 +14,7 @@ export default class TitleScene extends Phaser.Scene {
         .setInteractive({useHandCursor: true});
 
         button.on('pointerdown', () => {
-            this.scene.start('GameScene');
+            this.scene.start('Game');
         });
     }
     update() {

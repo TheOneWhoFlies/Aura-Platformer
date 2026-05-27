@@ -1,5 +1,5 @@
-import TitleScene from '../Scenes/Title.js';
-import GameScene from '../Scenes/game.js';
+import TitleScene from '/Scenes/title.js';
+import GameScene from '/Scenes/game.js';
 
 const aspectRatio = {
     width: 800,
@@ -10,7 +10,6 @@ const gravity = 300;
 
 const config = {
     type: Phaser.AUTO,
-
     parent: 'game-wrapper',
     scale: {
         mode: Phaser.Scale.FIT,
@@ -28,4 +27,4 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-game.scene.add('Title', TitleScene, true);
+this.scene.add('Title', config, true);
