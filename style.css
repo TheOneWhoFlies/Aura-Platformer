@@ -18,4 +18,5 @@ body {
 .column {
     border: black;
     border-style: groove;
+    max-width: 500px;
 }
