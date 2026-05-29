@@ -7,9 +7,9 @@ export default class TitleScene extends Phaser.Scene {
         
     }
     create() {
-        this.add.text(160, 400, 'AURA', { fontSize: '64px', fill: '#ffffff' }).setOrigin(0.5);
-        this.add.text(210, 460, 'MONSTER', { fontSize: '64px', fill: '#ffffff' }).setOrigin(0.5);
-        const button = this.add.text(580, 460, 'START', { fontSize: '32px', fill: '#ffffff' })
+        this.add.text(90, 20, 'AURA', { fontSize: '64px', fill: '#ffffff' }).setOrigin(0.5);
+        this.add.text(146, 84, 'MONSTER', { fontSize: '64px', fill: '#ffffff' }).setOrigin(0.5);
+        const button = this.add.text(90, 200, 'START', { fontSize: '32px', fill: '#ffffff' })
         .setOrigin(0.5)
         .setInteractive({useHandCursor: true});
 

@@ -1,0 +1,87 @@
+{
+    "anims": {
+        "subaru": [
+            {"key":"subaru_idle",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":1,
+                    "end":8
+                }
+            },
+            {"key":"subaru_victory",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":9,
+                    "end":9
+                }
+            },
+            {"key":"subaru_jump",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":17,
+                    "end":20
+                }
+            },
+            {"key":"subaru_fall",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":25,
+                    "end":28
+                }
+            },
+            {"key":"subaru_land",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":33,
+                    "end":34
+                }
+            },
+            {"key":"subaru_run",
+            "textureKey":"subaru",
+            "frameRate":10,
+            "repeat":-1,
+            "animLength": {
+                "start":41,
+                "end":46
+            }
+            },
+            {"key":"subaru_slice",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":49,
+                    "end":51
+                }
+            },
+            {"key":"subaru_hurt",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":57,
+                    "end":59
+                }
+            },
+            {"key":"subaru_death",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":65,
+                    "end":67
+                }
+            }
+        ]
+    }
+}
