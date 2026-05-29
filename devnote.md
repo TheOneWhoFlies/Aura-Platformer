@@ -3,3 +3,5 @@ Remember to download all the extensions; the list is below.
 - JavaScript and TypeScript Nightly
 - Live Preview
 - Phaser JS
+
+Note: Sprite Frames start at zero in phaser.

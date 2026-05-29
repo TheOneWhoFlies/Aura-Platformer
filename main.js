@@ -1,5 +1,5 @@
-import TitleScene from '/Scenes/title.js';
-import GameScene from '/Scenes/game.js';
+import title_scene from '/Game-Assets/Scenes/title.js';
+import game_scene from '/Game-Assets/Scenes/game.js';
 
 const aspectRatio = {
     width: 480,
@@ -22,7 +22,7 @@ const config = {
         default: 'arcade',
         gravity: { y: gravity}
     },
-    scene: [TitleScene,GameScene],
+    scene: [title_scene,game_scene],
     backgroundColor: '#000000'
 };
 
