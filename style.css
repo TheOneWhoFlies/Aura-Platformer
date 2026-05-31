@@ -4,9 +4,14 @@ body {
 }
 
 #game-wrapper {
-    background-color: rgb(255, 255, 255);
-    border: 5px solid rgb(250, 82, 82);
+    background-color: rgb(0, 0, 0);
+    border: 5px solid rgb(88, 250, 82);
     margin:0 0 0 0;
+    overflow: hidden;
+    width: 68vw;
+    height: calc(68vw / 16 * 9);
+    display: flex;
+    justify-content: center;
 }
 
 .advert {
@@ -14,7 +19,11 @@ body {
     text-align: justify;
     
 }
-
+#about-game {
+    margin-left: 20px;
+    margin-top: 15px;
+    text-align: justify;
+}
 .column {
     border: black;
     border-style: groove;
