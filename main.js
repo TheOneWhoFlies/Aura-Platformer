@@ -1,9 +1,9 @@
-import title_scene from '/Game-Assets/Scenes/title.js';
-import game_scene from '/Game-Assets/Scenes/game.js';
+import title_scene from '/Game_Assets/Scenes/title.js';
+import game_scene from '/Game_Assets/Scenes/game.js';
 
 const aspectRatio = {
-    width: 480,
-    height: 270
+    width: 240,
+    height: 135
 }
 
 const gravity = 300;

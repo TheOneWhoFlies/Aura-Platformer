@@ -8,7 +8,7 @@ export function assembleAnimations(scene,cacheKey) {
     }
     
     Object.keys(animationData.anims).forEach(character => {
-        animationData.anims[character].forEach(animConfig=> {
+        animationData.anims[character].forEach(animConfig => {
             // gets the animation length from animation config and generates the array automaticall
             const generatedFrames = scene.anims.generateFrameNumbers(animConfig.textureKey, {
                 start: animConfig.animLength.start,

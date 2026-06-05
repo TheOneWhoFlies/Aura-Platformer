@@ -8,7 +8,8 @@
                 "animLength": {
                     "start":0,
                     "end":7
-                }
+                },
+                "priority":1
             },
             {"key":"subaru_victory",
                 "textureKey":"subaru",
@@ -17,7 +18,8 @@
                 "animLength": {
                     "start":8,
                     "end":8
-                }
+                },
+                "priority":2
             },
             {"key":"subaru_jump",
                 "textureKey":"subaru",
@@ -26,7 +28,8 @@
                 "animLength": {
                     "start":16,
                     "end":19
-                }
+                },
+                "priority":3
             },
             {"key":"subaru_fall",
                 "textureKey":"subaru",
@@ -35,7 +38,8 @@
                 "animLength": {
                     "start":24,
                     "end":27
-                }
+                },
+                "priority":3
             },
             {"key":"subaru_land",
                 "textureKey":"subaru",
@@ -44,7 +48,8 @@
                 "animLength": {
                     "start":32,
                     "end":33
-                }
+                },
+                "priority":2
             },
             {"key":"subaru_run",
             "textureKey":"subaru",
@@ -53,7 +58,8 @@
             "animLength": {
                 "start":40,
                 "end":45
-            }
+            },
+                "priority":3
             },
             {"key":"subaru_slice",
                 "textureKey":"subaru",
@@ -62,7 +68,8 @@
                 "animLength": {
                     "start":48,
                     "end":50
-                }
+                },
+                "priority":2
             },
             {"key":"subaru_hurt",
                 "textureKey":"subaru",
@@ -71,7 +78,8 @@
                 "animLength": {
                     "start":56,
                     "end":58
-                }
+                },
+                "priority":4
             },
             {"key":"subaru_death",
                 "textureKey":"subaru",
@@ -80,7 +88,8 @@
                 "animLength": {
                     "start":64,
                     "end":66
-                }
+                },
+                "priority":4
             }
         ]
     }
