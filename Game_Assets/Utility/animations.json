@@ -1,7 +1,7 @@
 {
     "anims": {
         "subaru": [
-            {"key":"subaru_idle",
+            {"key":"idle",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":-1,
@@ -11,7 +11,7 @@
                 },
                 "priority":1
             },
-            {"key":"subaru_victory",
+            {"key":"victory",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":0,
@@ -21,7 +21,7 @@
                 },
                 "priority":2
             },
-            {"key":"subaru_jump",
+            {"key":"jump",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":0,
@@ -31,7 +31,7 @@
                 },
                 "priority":3
             },
-            {"key":"subaru_fall",
+            {"key":"fall",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":-1,
@@ -41,7 +41,7 @@
                 },
                 "priority":3
             },
-            {"key":"subaru_land",
+            {"key":"land",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":0,
@@ -51,7 +51,7 @@
                 },
                 "priority":2
             },
-            {"key":"subaru_run",
+            {"key":"run",
             "textureKey":"subaru",
             "frameRate":10,
             "repeat":-1,
@@ -61,7 +61,7 @@
             },
                 "priority":3
             },
-            {"key":"subaru_slice",
+            {"key":"slice",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":0,
@@ -71,7 +71,7 @@
                 },
                 "priority":2
             },
-            {"key":"subaru_hurt",
+            {"key":"hurt",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":-1,
@@ -81,7 +81,7 @@
                 },
                 "priority":4
             },
-            {"key":"subaru_death",
+            {"key":"death",
                 "textureKey":"subaru",
                 "frameRate":10,
                 "repeat":-1,
