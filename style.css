@@ -33,3 +33,9 @@ body {
     height: 10vw;
     
 }
+.home-bg {
+    background-color: rgb(5, 31, 5);
+}
+.white-txt {
+    color: white;
+}
