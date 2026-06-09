@@ -14,15 +14,6 @@ body {
     justify-content: center;
 }
 
-.advert {
-    margin: auto;
-    text-align: center;
-    display: block;
-    
-    width: 80vw;
-    height: 10vw;
-    
-}
 #about-game {
     margin-left: 20px;
     margin-top: 15px;
@@ -32,4 +23,13 @@ body {
     border: black;
     border-style: groove;
     max-width: 500px;
+}
+.ad-banner {
+    margin: auto;
+    text-align: center;
+    display: block;
+    
+    width: 80vw;
+    height: 10vw;
+    
 }
