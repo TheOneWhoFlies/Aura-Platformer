@@ -16,7 +16,11 @@ body {
 
 .advert {
     margin: auto;
-    text-align: justify;
+    text-align: center;
+    display: block;
+    
+    width: 80vw;
+    height: 10vw;
     
 }
 #about-game {
