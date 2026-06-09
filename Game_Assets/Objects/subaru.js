@@ -23,17 +23,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.fastFallTime = 0;
         this.fastFallCooldown = 0.05;
 
-        this.externalForceX = 0;
-        this.externalForceY = 0;
+        this.controlledForce = {x:0,y:0};
+        this.externalForce = {x:0,y:0};
         this.externalForceDecay = 0.90;
     }
 
     update(time,delta) {
         let dt = delta / 1000;
-
-        this.externalForceX = this.externalForceX * this.externalForceDecay
-        if (Math.abs(this.externalForceX) < 1) {
-            this.externalForceX = 0;
+        
+        this.externalForce.x = this.externalForce.x * this.externalForceDecay
+        if (Math.abs(this.externalForce.x) < 1) {
+            this.externalForce.x = 0;
         }
         //running code
         this.anims.play('idle',true)
@@ -41,18 +41,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.setFlipX(true);
             this.directionNum = -1;
             let targetVelocity = (Math.max(this.body.velocity.x - this.acceleration, -this.topSpeed));
-            this.setVelocityX(targetVelocity);
+            this.controlledForce.x = targetVelocity;
         } else if (this.keys.RIGHT.isDown && !this.keys.LEFT.isDown) {
             this.setFlipX(false);
             this.directionNum = 1;
             let targetVelocity = (Math.min(this.body.velocity.x + this.acceleration, this.topSpeed));
-            this.setVelocityX(targetVelocity);
+            this.controlledForce.x = targetVelocity;
         } else {
             let currentVelocity = this.body.velocity.x * this.decelSpeed;
             if (Math.abs(currentVelocity) < 1) {
                 currentVelocity = 0;
             }
-            this.setVelocityX(currentVelocity);
+            this.controlledForce.x = targetVelocity;
         }
         //jumping code
         if (this.keys.UP.isDown && this.body.blocked.down && !this.jumping) { 
@@ -70,7 +70,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         //fast-fall code
         if (this.keys.SHIFT.isDown && !this.body.blocked.down && this.canFastFall) {
             this.fastFalling = true;
-            this.externalForceX += this.fastFallBoost * this.directionNum
+            this.externalForce.x += this.fastFallBoost * this.directionNum
             this.body.setVelocityY(this.scene.physics.world.gravity.y)
         } else if (this.fastFalling && this.body.blocked.down) {
             this.fastFalling = false;
@@ -90,5 +90,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if (this.body.blocked.down) { 
             this.jumpTime = 0; 
         }
+
+        setVelocityX
+
     }
 }
