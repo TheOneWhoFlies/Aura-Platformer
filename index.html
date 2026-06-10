@@ -15,12 +15,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
         <!-- ayo teach, go checke le Aura game importer-->
-        <script type="module" src="main.js"></script>
+        <script type="module" src="main.js" defer></script>
+        <script src="/Web_Assets/ad_loader.js" defer></script>
         
     </head>
     
-    <body>
-        <nav class="navbar navbar-expand-lg ">
+    <body class="home-bg white-txt">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">  
                 <a class="navbar-brand" href="#">Aura Monster</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,29 +30,31 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home Page</a>
+                                <a class="nav-link active" aria-current="page" href="#">Home Page</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="sponsors.html">Sponsors</a>
+                                <a class="nav-link white-txt" href="sponsors.html">Sponsors</a>
                             </li>
                         </ul>
                     </div>
             </div>
             </nav>
         <h2 class="text-center">AURA MONSTER</h2>
-        <!-- very important images that cannot be replaced no matter what-->
-        <img src="Web_Assets/Troll_Tacos.png" class="advert">
-        <img src="Web_Assets/Tom_Clothing.png" class="advert">
+        
+        <!-- fake banner ads-->
+         <div class="d-flex gap-3">
+            <a id="ad-link" target="_blank"><img class="ad-banner" id="advert" alt="Advertisement"></a>
+         </div>
 
         <div id="game-wrapper" class="col-xs-6 mx-auto"></div>
-            <details id="about-game">
+            <details class ="white-txt"id="about-game">
                 <summary>About & How to Play</summary>
             <p>Play Aura Platformer now and experience the fun playing as the Aura Monster himself, Natsuki Daniel
             on his journey to climb up the stairs! Climb up the stairs, defeat enemies, and show everyone your aura.</p>
             <p> Controls: <br>
-            A / Left Arrow - Move Left <br>
-            D / Right Arrow - Move Right <br>
-            Space / Up Arrow - Jump
+            Left Arrow - Move Left <br>
+            Right Arrow - Move Right <br>
+            Up Arrow - Jump
             <br>
             <br>
             Aura Gimmick: <br>

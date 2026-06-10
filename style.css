@@ -14,11 +14,6 @@ body {
     justify-content: center;
 }
 
-.advert {
-    margin: auto;
-    text-align: justify;
-    
-}
 #about-game {
     margin-left: 20px;
     margin-top: 15px;
@@ -28,4 +23,18 @@ body {
     border: black;
     border-style: groove;
     max-width: 500px;
+}
+#ad-
+.ad-banner {
+    margin: auto;
+    text-align: center;
+    width: 80vw;
+    height: 10vw;
+    
+}
+.home-bg {
+    background-color: rgb(5, 31, 5);
+}
+.white-txt {
+    color: white;
 }
