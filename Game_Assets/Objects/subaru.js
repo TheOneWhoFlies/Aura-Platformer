@@ -10,88 +10,118 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.acceleration = 10;
         this.decelSpeed = 0.85;
 
-        this.jumping = false;
+        // Jump mechanics
+        this.isJumping = false;
         this.jumpHeight = -100;
         this.jumpTime = 0;
-        this.maxJumpDuration = 0.16;
+        this.maxJumpDuration = 0.3;
 
+        // wavedash mechanics
         this.directionNum = 1;
-        this.fastFallBoost = 200;
+        this.wavedashBoost = { x:120, y:120 };
+        this.canWavedash = true;
+        this.wavedashing = false;
+        this.wavedashTime = 0;
+        this.wavedashCooldown = 0.4;
 
-        this.canFastFall = true;
-        this.fastFalling = false;
-        this.fastFallTime = 0;
-        this.fastFallCooldown = 0.05;
-
-        this.controlledForce = {x:0,y:0};
-        this.externalForce = {x:0,y:0};
+        // Force variables
+        this.controlledForceX = 0 ;
+        this.externalForce = { x: 0, y: 0 };
         this.externalForceDecay = 0.90;
     }
 
-    update(time,delta) {
-        let dt = delta / 1000;
-        
-        this.externalForce.x = this.externalForce.x * this.externalForceDecay * delta
+    //momentum code
+    applyExternalDecay() {
+        this.externalForce.x = this.externalForce.x * this.externalForceDecay
         if (Math.abs(this.externalForce.x) < 1) {
             this.externalForce.x = 0;
         }
-        //running code
-        this.anims.play('idle',true)
-        if (this.keys.LEFT.isDown && !this.keys.RIGHT.isDown) {
+        this.externalForce.y = this.externalForce.y * this.externalForceDecay
+        if (Math.abs(this.externalForce.y) < 1) {
+            this.externalForce.x = 0;
+        }
+    }
+
+    //running code
+    handleHorizontalMovement() {
+        const movingLeft = this.keys.LEFT.isDown && !this.keys.RIGHT.isDown;
+        const movingRight = this.keys.RIGHT.isDown && !this.keys.LEFT.isDown;
+
+        if (movingLeft) {
             this.setFlipX(true);
             this.directionNum = -1;
-            let targetVelocity = (Math.max(this.body.velocity.x - this.acceleration, -this.topSpeed));
-            this.controlledForce.x = targetVelocity;
-        } else if (this.keys.RIGHT.isDown && !this.keys.LEFT.isDown) {
+            let targetVelocity = (Math.max(this.controlledForceX - this.acceleration, -this.topSpeed));
+            this.controlledForceX = targetVelocity;
+        } else if (movingRight) {
             this.setFlipX(false);
             this.directionNum = 1;
-            let targetVelocity = (Math.min(this.body.velocity.x + this.acceleration, this.topSpeed));
-            this.controlledForce.x = targetVelocity;
+            let targetVelocity = (Math.min(this.controlledForceX + this.acceleration, this.topSpeed));
+            this.controlledForceX = targetVelocity;
         } else {
-            let currentVelocity = this.body.velocity.x * this.decelSpeed;
+            let currentVelocity = this.controlledForceX * this.decelSpeed;
             if (Math.abs(currentVelocity) < 1) {
                 currentVelocity = 0;
             }
-            this.controlledForce.x = targetVelocity;
+            this.controlledForceX = currentVelocity;
         }
-        //jumping code
-        if (this.keys.UP.isDown && this.body.blocked.down && !this.jumping) { 
-            this.jumping = true; 
-            this.body.setVelocityY(this.jumpHeight);
+    }
+
+    //jump code (Still won't make you go up while holding)
+    handleJumping(dt) {
+        let grounded = this.body.blocked.down;
+
+        if (grounded) {
             this.jumpTime = 0;
-        } else if (this.jumping && this.body.velocity.y < 0) { 
+        }
+        if (this.keys.UP.isUp) {
+            this.jumping = false;
+        }
+        if(this.keys.UP.isDown && this.jumping && this.body.velocity.y < 0) {
             this.jumpTime += dt;
-            if (this.jumpTime < this.maxJumpDuration) { 
-                this.body.setVelocityY(this.jumpHeight); 
-            } else {
-                this.jumping = false;
+            console.log("HERE!")
+            if (this.jumpTime < this.maxJumpDuration) {
+                this.body.setVelocityY(this.jumpHeight);
+            }
+        }else if (grounded && this.keys.UP.isDown && !this.jumping) {
+            this.jumping = true;
+            grounded = false;
+            this.body.setVelocityY(this.jumpHeight);
+        }
+        
+
+    }
+
+    //wavedash code (can only wavedash once, no horizontal boost)
+    handleWavedashing(dt) {
+        const shiftPressed = Phaser.Input.Keyboard.JustDown(this.keys.SHIFT);
+        const grounded = this.body.blocked.down;
+
+        if (shiftPressed && !grounded && this.canWavedash && !this.wavedashing) {
+            this.wavedashing = true;
+            this.externalForceX += this.wavedashBoostX * this.directionNum;
+            this.body.setVelocityY(this.scene.physics.world.gravity.y + this.wavedashBoost.y);
+            }
+        if (this.wavedashing && grounded) {
+            this.wavedashing = false;
+            this.canWavedash = false;
+            this.wavedashTime = 0;
+            if (!this.canWavedash) {
+                this.wavedashTime += dt;
+                if (this.wavedashTime >= this.wavedashCooldown) {
+                        this.canWavedash = true;
+                    }
             }
         }
-        //fast-fall code
-        if (this.keys.SHIFT.isDown && !this.body.blocked.down && this.canFastFall) {
-            this.fastFalling = true;
-            this.externalForce.x += this.fastFallBoost * this.directionNum
-            this.body.setVelocityY(this.scene.physics.world.gravity.y)
-        } else if (this.fastFalling && this.body.blocked.down) {
-            this.fastFalling = false;
-            this.canFastFall = false;
-            this.fastFallTime = 0;
-        }
-        if (!this.canFastFall) {
-            this.fastFallTime += dt;
-            if (this.fastFallTime >= this.fastFallCooldown) {
-                this.canFastFall = true;
-            }
-        }
+    }
 
-        if (this.keys.UP.isUp) { 
-            this.jumping = false; 
-        }
-        if (this.body.blocked.down) { 
-            this.jumpTime = 0; 
-        }
+    update(time,delta) {
+        let deltaTime = delta / 1000;
+        
+        this.applyExternalDecay();
+        this.handleHorizontalMovement();
+        this.handleJumping(deltaTime);
+        this.handleWavedashing(deltaTime);
 
-        setVelocityX
-
+        this.body.setVelocity(this.controlledForceX + this.externalForce.x,this.externalForce.y + this.body.velocity.y);
     }
 }
