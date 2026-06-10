@@ -11,8 +11,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.decelSpeed = 0.85;
 
         // Jump mechanics
-        this.isJumping = false;
-        this.jumpHeight = -100;
+        this.jumping = false;
+        this.jumpHeight = -106;
         this.jumpTime = 0;
         this.maxJumpDuration = 0.3;
 
@@ -22,21 +22,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.canWavedash = true;
         this.wavedashing = false;
         this.wavedashTime = 0;
-        this.wavedashCooldown = 0.4;
+        this.wavedashCooldown = 0.05;
 
         // Force variables
-        this.controlledForceX = 0 ;
-        this.externalForce = { x: 0, y: 0 };
+        this.controlledForceX = 0;
+        this.controlledForceDecay = 0.90;
+        this.externalForce = {x:0,y:0};
         this.externalForceDecay = 0.90;
     }
 
     //momentum code
-    applyExternalDecay() {
-        this.externalForce.x = this.externalForce.x * this.externalForceDecay
+    applyExternalForceDecay() {
+        this.externalForce.x = this.externalForce.x * this.externalForceDecay;
         if (Math.abs(this.externalForce.x) < 1) {
             this.externalForce.x = 0;
         }
-        this.externalForce.y = this.externalForce.y * this.externalForceDecay
+        this.externalForce.y = this.externalForce.y * this.externalForceDecay;
         if (Math.abs(this.externalForce.y) < 1) {
             this.externalForce.x = 0;
         }
@@ -68,27 +69,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     //jump code (Still won't make you go up while holding)
     handleJumping(dt) {
-        let grounded = this.body.blocked.down;
-
-        if (grounded) {
-            this.jumpTime = 0;
-        }
+        const grounded = this.body.blocked.down;
+        
         if (this.keys.UP.isUp) {
             this.jumping = false;
         }
-        if(this.keys.UP.isDown && this.jumping && this.body.velocity.y < 0) {
-            this.jumpTime += dt;
-            console.log("HERE!")
-            if (this.jumpTime < this.maxJumpDuration) {
-                this.body.setVelocityY(this.jumpHeight);
-            }
-        }else if (grounded && this.keys.UP.isDown && !this.jumping) {
-            this.jumping = true;
-            grounded = false;
-            this.body.setVelocityY(this.jumpHeight);
+        if (grounded) {
+            this.jumpTime = 0;
         }
-        
 
+        if(this.keys.UP.isDown){
+            if (grounded && !this.jumping && this.jumpTime === 0) {
+                this.jumpTime += dt;
+                this.jumping = true;
+            }
+            if (this.jumping  && this.jumpTime < this.maxJumpDuration) {
+                   console.log(this.jumpTime);
+                    this.setVelocityY(this.jumpHeight);
+            }
+        }
     }
 
     //wavedash code (can only wavedash once, no horizontal boost)
@@ -117,11 +116,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     update(time,delta) {
         let deltaTime = delta / 1000;
         
-        this.applyExternalDecay();
+        this.applyExternalForceDecay();
         this.handleHorizontalMovement();
         this.handleJumping(deltaTime);
         this.handleWavedashing(deltaTime);
 
-        this.body.setVelocity(this.controlledForceX + this.externalForce.x,this.externalForce.y + this.body.velocity.y);
+        this.body.setVelocity(this.controlledForceX + this.externalForce.x,this.body.velocity.y + this.externalForce.y);
     }
 }
