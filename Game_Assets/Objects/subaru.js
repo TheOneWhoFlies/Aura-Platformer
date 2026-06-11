@@ -1,45 +1,49 @@
-export default class Player extends Phaser.Physics.Arcade.Sprite {
+export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor (scene,x,y) {
         super(scene,x,y,'subaru');
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.keys = scene.input.keyboard.addKeys('UP,LEFT,RIGHT,SHIFT');
 
+        this.animState = 'idle';
+
         //movement variables
         this.topSpeed = 105;
         this.acceleration = 10;
         this.decelSpeed = 0.85;
 
-        // Jump mechanics
+        // Jump variables
         this.jumping = false;
         this.jumpHeight = -106;
-        this.jumpTime = 0;
-        this.maxJumpDuration = 0.3;
+        this.jumpDuration = 0.2;
 
         // wavedash mechanics
         this.directionNum = 1;
-        this.wavedashBoost = { x:120, y:120 };
+        this.wavedashBoost = { x:90, y:1 };
         this.canWavedash = true;
         this.wavedashing = false;
-        this.wavedashTime = 0;
-        this.wavedashCooldown = 0.05;
+        this.waveDashBegan = false;
+        this.wavedashCooldown = 250; //milliseconds
+        this.wavedashCooldownActive = false;
 
         // Force variables
         this.controlledForceX = 0;
         this.controlledForceDecay = 0.90;
         this.externalForce = {x:0,y:0};
         this.externalForceDecay = 0.90;
+        this.aerialExternalDecay = 0.99;
     }
 
     //momentum code
     applyExternalForceDecay() {
-        this.externalForce.x = this.externalForce.x * this.externalForceDecay;
+        const currentDecayX = this.body.blocked.down ? this.externalForceDecay : this.aerialExternalDecay;
+        this.externalForce.x = this.externalForce.x * currentDecayX;
         if (Math.abs(this.externalForce.x) < 1) {
             this.externalForce.x = 0;
         }
         this.externalForce.y = this.externalForce.y * this.externalForceDecay;
         if (Math.abs(this.externalForce.y) < 1) {
-            this.externalForce.x = 0;
+            this.externalForce.y = 0;
         }
     }
 
@@ -68,10 +72,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     //jump code (Still won't make you go up while holding)
-    handleJumping(dt) {
+    handleJumping(time) {
         const grounded = this.body.blocked.down;
         
-        if (this.keys.UP.isUp) {
+        if (this.keys.UP.isUp || this.jumpTime >= this.jumpDuration) {
             this.jumping = false;
         }
         if (grounded) {
@@ -80,47 +84,50 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         if(this.keys.UP.isDown){
             if (grounded && !this.jumping && this.jumpTime === 0) {
-                this.jumpTime += dt;
                 this.jumping = true;
-            }
-            if (this.jumping  && this.jumpTime < this.maxJumpDuration) {
-                   console.log(this.jumpTime);
-                    this.setVelocityY(this.jumpHeight);
+                this.setVelocityY(this.jumpHeight);
             }
         }
     }
 
-    //wavedash code (can only wavedash once, no horizontal boost)
-    handleWavedashing(dt) {
+    //wavedash code (double wavedash bug when holding shift & up at once)
+    handleWavedashing() {
         const shiftPressed = Phaser.Input.Keyboard.JustDown(this.keys.SHIFT);
         const grounded = this.body.blocked.down;
-
-        if (shiftPressed && !grounded && this.canWavedash && !this.wavedashing) {
-            this.wavedashing = true;
-            this.externalForceX += this.wavedashBoostX * this.directionNum;
+        
+        if (this.wavedashing && !grounded && !this.waveDashBegan) {
+            this.jumping = false;
+            this.waveDashBegan = true;
+            this.externalForce.x += this.wavedashBoost.x * this.directionNum;
             this.body.setVelocityY(this.scene.physics.world.gravity.y + this.wavedashBoost.y);
-            }
-        if (this.wavedashing && grounded) {
+        } 
+        
+        if (this.wavedashing && grounded && !this.wavedashCooldownActive) {
             this.wavedashing = false;
-            this.canWavedash = false;
-            this.wavedashTime = 0;
-            if (!this.canWavedash) {
-                this.wavedashTime += dt;
-                if (this.wavedashTime >= this.wavedashCooldown) {
-                        this.canWavedash = true;
-                    }
+            this.waveDashBegan = false;
+            this.wavedashCooldownActive = true; 
+            this.scene.time.delayedCall(this.wavedashCooldown, this.resetWavedashCooldown, [], this);
+        }
+    
+        if (shiftPressed && !this.wavedashCooldownActive) {
+            if (!grounded && this.canWavedash && !this.wavedashing) {
+                this.wavedashing = true;
+                this.canWavedash = false;
             }
         }
+    
     }
 
-    update(time,delta) {
-        let deltaTime = delta / 1000;
-        
+    resetWavedashCooldown() {
+        this.canWavedash = true;
+        this.wavedashCooldownActive = false;
+    }
+
+    update(time) {
         this.applyExternalForceDecay();
         this.handleHorizontalMovement();
-        this.handleJumping(deltaTime);
-        this.handleWavedashing(deltaTime);
-
+        this.handleWavedashing();
+        this.handleJumping(time);
         this.body.setVelocity(this.controlledForceX + this.externalForce.x,this.body.velocity.y + this.externalForce.y);
     }
 }
