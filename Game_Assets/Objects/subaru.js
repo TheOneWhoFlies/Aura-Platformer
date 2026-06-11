@@ -1,3 +1,5 @@
+import { Target } from "./target.js";
+
 export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor (scene,x,y) {
         super(scene,x,y,'subaru');
@@ -7,6 +9,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.animState = 'idle';
 
+        this.targets = 3;
+        this.targetCount = 0;
         //movement variables
         this.topSpeed = 105;
         this.acceleration = 10;
@@ -117,12 +121,21 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         }
     
     }
-
+    // resets your wavedash, self explanatory, dude.
     resetWavedashCooldown() {
         this.canWavedash = true;
         this.wavedashCooldownActive = false;
     }
 
+    collectTarget(target) {
+        if (!target.body.enable) return
+        this.targetCount += 1;
+
+        if (this.targetCount >= this.targets) {
+            this.anims.play('victory');
+        }
+    }
+    
     update(time) {
         this.applyExternalForceDecay();
         this.handleHorizontalMovement();
