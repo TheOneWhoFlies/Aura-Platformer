@@ -1,9 +1,18 @@
 body {
-    background-color: azure;
+    background-color: rgb(39, 46, 44);
+    color: rgb(255, 255, 255);
+    min-height:135vh;
 }
 
 .mid-align {
     text-align: center;
+    width: 80vw;
+    height: 10vw;
+    transition: filter 0.2s ease-in-out;
+}
+
+.ad-banner:hover {
+    filter: brightness(102%); 
 }
 
 .jus-karita {

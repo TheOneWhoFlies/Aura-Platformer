@@ -1,0 +1,96 @@
+{
+    "anims": {
+        "subaru": [
+            {"key":"idle",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":0,
+                    "end":7
+                },
+                "priority":1
+            },
+            {"key":"victory",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":8,
+                    "end":8
+                },
+                "priority":2
+            },
+            {"key":"jump",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":16,
+                    "end":19
+                },
+                "priority":3
+            },
+            {"key":"fall",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":24,
+                    "end":27
+                },
+                "priority":3
+            },
+            {"key":"land",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":32,
+                    "end":33
+                },
+                "priority":2
+            },
+            {"key":"run",
+            "textureKey":"subaru",
+            "frameRate":10,
+            "repeat":-1,
+            "animLength": {
+                "start":40,
+                "end":45
+            },
+                "priority":3
+            },
+            {"key":"slice",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":0,
+                "animLength": {
+                    "start":48,
+                    "end":50
+                },
+                "priority":2
+            },
+            {"key":"hurt",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":56,
+                    "end":58
+                },
+                "priority":4
+            },
+            {"key":"death",
+                "textureKey":"subaru",
+                "frameRate":10,
+                "repeat":-1,
+                "animLength": {
+                    "start":64,
+                    "end":66
+                },
+                "priority":4
+            }
+        ]
+    }
+}
