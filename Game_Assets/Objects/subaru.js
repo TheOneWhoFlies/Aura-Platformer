@@ -6,11 +6,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.keys = scene.input.keyboard.addKeys('UP,LEFT,RIGHT,SHIFT');
+        this.body.setSize(7,16);
 
-        this.animState = 'idle';
-
-        this.targets = 3;
-        this.targetCount = 0;
+        this.targets = 0;
+        this.targetCount = 5;
         //movement variables
         this.topSpeed = 105;
         this.acceleration = 10;
@@ -18,7 +17,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         // Jump variables
         this.jumping = false;
-        this.jumpHeight = -106;
+        this.jumpHeight = -186;
         this.jumpDuration = 0.2;
 
         // wavedash mechanics
@@ -35,7 +34,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.controlledForceDecay = 0.90;
         this.externalForce = {x:0,y:0};
         this.externalForceDecay = 0.90;
-        this.aerialExternalDecay = 0.99;
+        this.aerialExternalDecay = 0.97;
     }
 
     //momentum code
@@ -128,11 +127,15 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     collectTarget(target) {
-        if (!target.body.enable) return
-        this.targetCount += 1;
-
-        if (this.targetCount >= this.targets) {
+        if (!target.body.enable||!target || !target.body) return
+            target.body.enable =false;
+            this.targetCount += 1;
+            this.checkWinCondition();
+    }
+    checkWinCondition() {
+        if (this.targets >= this.targetCount) {
             this.anims.play('victory');
+            this.scene.events.emit('playerWon', true);
         }
     }
     
@@ -140,6 +143,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.applyExternalForceDecay();
         this.handleHorizontalMovement();
         this.handleWavedashing();
+        this.checkWinCondition();
         this.handleJumping(time);
         this.body.setVelocity(this.controlledForceX + this.externalForce.x,this.body.velocity.y + this.externalForce.y);
     }
