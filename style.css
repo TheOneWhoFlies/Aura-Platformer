@@ -4,35 +4,7 @@ body {
     min-height:135vh;
 }
 
-#game-wrapper {
-    background-color: rgb(0, 0, 0);
-    border: 5px solid rgb(88, 250, 82);
-    margin:0 0 0 0;
-    overflow: hidden;
-    width: 68vw;
-    height: calc(68vw / 16 * 9);
-    display: flex;
-    justify-content: center;
-}
-
-.navbar {
-    background-color:rgba(22, 23, 24, 0.555);
-    margin-bottom:10px
-}
-
-#about-game {
-    margin-left: 20px;
-    margin-top: 15px;
-    text-align: justify;
-}
-.column {
-    border: black;
-    border-style: groove;
-    max-width: 500px;
-}
-
-.ad-banner {
-    margin: 5px auto 10px auto;
+.mid-align {
     text-align: center;
     width: 80vw;
     height: 10vw;
@@ -41,4 +13,8 @@ body {
 
 .ad-banner:hover {
     filter: brightness(102%); 
+}
+
+.jus-karita {
+    justify-items: right;
 }

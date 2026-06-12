@@ -2,66 +2,37 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta lang="en">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Aura Monster: The Game</title>
 
         <!-- Imports Phaser library -->
+        <script src="https://cdn.jsdelivr.net/npm/phaser@4.1.0/dist/phaser.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/phaser@4.1.0/dist/phaser.min.js"></script>
         
         <!-- I am bootstrap i-i am bootstrap or maybe just iceman-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
-        <!-- import custom styles and scripts after bootstrap, Chris!-->
-         <link rel="stylesheet" href="style.css">
-        <script type="module" src="main.js" defer></script>
-        <script src="/Web_Assets/ad_loader.js" defer></script>
-        
+        <!-- ayo teach, go checke le Aura game importer-->
+        <script src="game.js"></script>
     </head>
     
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">  
-                <a class="navbar-brand" href="#">Aura Monster</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"> <!-- in case I ever want an icon --></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="sponsors.html">Sponsors</a>
-                            </li>
-                        </ul>
-                    </div>
-            </div>
-            </nav>
-        <h2 class="text-center">AURA MONSTER</h2>
-        
-        <!-- fake banner ads-->
-         <div class="d-flex gap-3">
-            <a id="ad-link" class="ad-banner" target="_blank"><img id="advert" class="ad-banner" alt="Advertisement"></a>
-         </div>
+        <h2 class="mid-align">AURA PLATFORMER: THE GAME</h2>
 
-        <div id="game-wrapper" class="col-xs-6 mx-auto"></div>
-            <details id="about-game">
-                <summary><h4>About & How to Play</h4></summary>
-            <p>Play Aura Platformer now and experience the fun playing as the Aura Monster himself, Natsuki Daniel
-            on his journey to destroy all the targets! Climb up the stairs, wavedash, and get faster times!</p>
-            <p> Controls: <br>
-            Left Arrow - Move Left <br>
-            Right Arrow - Move Right <br>
-            Up Arrow - Jump <br>
-            Left Shift - Wavedash
-            <br>
-            <br>
-            Objective: <br>
-            Destroy all targets!
-        </p></details>
+        <div id="game-wrapper">
+            <!-- Will be used to run the aura game-->
         </div>
-        
+        <details><p>Play Aura Platformer now and experience the fun playing as the Aura Monster himself, Natsuki Daniel
+            on his journey to climb up the stairs! It looks like he needs to do alot more than that though..</p>
+        <br>
+        <p> <!-- use this part for controls --></p></details>
+
+        <!-- In the future: add stuff on the left or right side for fun, like ads for the game or a previous project-->
+         <!-- add an "ayo teach, go checke le email" reference by making an ad with the image saying "want to prank a teach? Download now!"-->
+          <br>
+          <br>
+          <!-- will be used for an ad (canva maybe?)-->
+          <img src="#"> 
     </body>
 </html>
