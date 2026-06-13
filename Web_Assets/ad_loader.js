@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded',() => {
     const ad_panel = document.getElementById('advert');
     const ad_button = document.getElementById('ad-link');
-    const folder = "/Web_Assets/Banners/";
+    const folder = "Web_Assets/Banners/";
     const bannerList = [
         "Daniels Cameos.png",
         "Dantes Delivery Services.png", 

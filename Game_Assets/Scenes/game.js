@@ -1,5 +1,5 @@
-import { Player } from '/Game_Assets/Objects/subaru.js';
-import { assembleAnimations } from '/Game_Assets/Utility/anim_loader.js';
+import { Player } from '../Objects/subaru.js';
+import { assembleAnimations } from '../Utility/anim_loader.js';
 
 // DISCLAIMER: AI was used to make the code for loading the map and the timer.
 export default class game_scene extends Phaser.Scene {
@@ -8,12 +8,12 @@ export default class game_scene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.spritesheet('subaru', '/Game_Assets/Sprites/SubaruSheet.png', {frameWidth: 16, frameHeight: 16});
-        this.load.image('target', '/Game_Assets/Sprites/target.png');
-        this.load.json('anims', '/Game_Assets/Utility/animations.json');
+        this.load.spritesheet('subaru', '../Sprites/SubaruSheet.png', {frameWidth: 16, frameHeight: 16});
+        this.load.image('target', '../Sprites/target.png');
+        this.load.json('anims', '../Utility/animations.json');
         
         // 1. Keep loading it as a specialized tilemapTiledJSON
-        this.load.tilemapTiledJSON('levelData', "/Game_Assets/Levels/level1.json");
+        this.load.tilemapTiledJSON('levelData', "../Levels/level1.json");
     }
 
     create() {
