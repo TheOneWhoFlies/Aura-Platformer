@@ -1,4 +1,3 @@
-import { Target } from "./target.js";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor (scene,x,y) {
